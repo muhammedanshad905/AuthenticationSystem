@@ -3,7 +3,7 @@ import clientApi from "../config/apiConfig"
 
 export const sentOtp = async (data: { name: string, email: string, password: string }) => {
     try {
-        const res = await clientApi.post('/sent-otp', data);
+        const res = await clientApi.post('/send-otp', data);
         return res;
     } catch (error) {
         if (error instanceof Error)
@@ -47,7 +47,9 @@ export const login = async (data: { email: string, password: string }) => {
 
 export const logout = async () => {
     try {
-        const res = await clientApi.post('/logout');
+        const refreshToken = localStorage.getItem('auth-accessToken');
+        
+        const res = await clientApi.post('/logout', JSON.parse(refreshToken as string));
         return res;
     } catch (error) {
         if (error instanceof Error)

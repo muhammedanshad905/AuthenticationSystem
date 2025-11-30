@@ -8,7 +8,7 @@ import { Types } from 'mongoose';
 const OTP_EXPIRY_MINUTES = Number(process.env.OTP_EXPIRY_MINUTES || 10);
 
 export const generateAndStoreOtp = async (email: string): Promise<string> => {
-  const otp = (Math.floor(100000 + Math.random() * 900000)).toString();
+  const otp = Math.floor(1000 + Math.random() * 9000).toString();
   const expiresAt = new Date(Date.now() + OTP_EXPIRY_MINUTES * 60 * 1000);
 
   await Otp.findOneAndUpdate(

@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 const user = process.env.EMAIL_USER!;
 const pass = process.env.EMAIL_PASS!;
 
+
 if (!user || !pass) {
   console.warn('EMAIL_USER or EMAIL_PASS not set. OTP emails will fail.');
 }

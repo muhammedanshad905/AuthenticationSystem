@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { logout } from '../api/clientApi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Home() {
   const [user, setUser] = useState<string | null>(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const authUser = localStorage.getItem('auth-user');
@@ -16,8 +18,15 @@ export default function Home() {
   const handleLogout = async () => {
     await logout();
     localStorage.removeItem('auth-user');
+    navigate('/login')
     setUser(null);
   };
+
+  if(!user) {
+    return (
+      <div className="">loading</div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">

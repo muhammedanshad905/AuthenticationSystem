@@ -8,6 +8,7 @@ export interface AccessTokenPayload {
 
 // -------------------- ACCESS TOKEN --------------------
 export const signAccessToken = (payload: AccessTokenPayload): string => {
+
   const secret = process.env.JWT_ACCESS_SECRET as string;
 
   const options: SignOptions = {

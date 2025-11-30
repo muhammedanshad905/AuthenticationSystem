@@ -6,6 +6,8 @@ const authMiddleware = async (req: Request, res: Response, next: NextFunction) =
   try {
     // 1. Get token from Authorization header or cookie
     const authHeader = req.headers.authorization;
+  
+    
     const tokenFromHeader =
       authHeader && authHeader.startsWith('Bearer ')
         ? authHeader.split(' ')[1]

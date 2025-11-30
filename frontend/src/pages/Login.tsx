@@ -21,7 +21,7 @@ export default function Login() {
     e.preventDefault();
     const res = await login(formData);
     if(res) {
-        localStorage.setItem('auth-user', res.data);
+        localStorage.setItem('auth-user', JSON.stringify(res.data.user));
         localStorage.setItem('auth-accessToken', res.data.accessToken);
         navigate('/');
     }
